@@ -190,8 +190,8 @@ const complexityRows = computed(() => {
 function shuffle() {
   sorter.reset()
   tileComparing.value = []
-  tileSwapping.value  = []
-  tileSorted.value    = []
+  tileSwapping.value = []
+  tileSorted.value = []
   if (mode.value === 'bars') {
     shuffleBars()
   } else {
@@ -211,8 +211,9 @@ function toggleSort() {
   if (sorter.isDone.value) {
     sorter.reset()
     tileComparing.value = []
-    tileSwapping.value  = []
-    tileSorted.value    = []
+    tileSwapping.value = []
+    tileSorted.value = []
+    barValues.value = generateBars()
     return
   }
 

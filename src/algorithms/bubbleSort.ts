@@ -1,23 +1,23 @@
 import type { AlgorithmModule, SortStep } from '../types'
 
 function* bubbleSort(arr: number[]): Generator<SortStep> {
-  const a = [...arr]
-  const n = a.length
+  const inputArray = [...arr]
+  const n = inputArray.length
   const sorted: number[] = []
 
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
       yield {
-        array: [...a],
+        array: [...inputArray],
         comparing: [j, j + 1],
         swapping: [],
         sorted: [...sorted]
       }
 
-      if (a[j] > a[j + 1]) {
-        [a[j], a[j + 1]] = [a[j + 1], a[j]]
+      if (inputArray[j] > inputArray[j + 1]) {
+        [inputArray[j], inputArray[j + 1]] = [inputArray[j + 1], inputArray[j]]
         yield {
-          array: [...a],
+          array: [...inputArray],
           comparing: [],
           swapping: [j, j + 1],
           sorted: [...sorted]
@@ -28,7 +28,7 @@ function* bubbleSort(arr: number[]): Generator<SortStep> {
   }
 
   yield {
-    array: [...a],
+    array: [...inputArray],
     comparing: [],
     swapping: [],
     sorted: Array.from({ length: n }, (_, i) => i)

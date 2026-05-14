@@ -1,14 +1,10 @@
 import type { AlgorithmModule } from '../types'
 import { bubbleSortModule } from './bubbleSort'
+import { stalinSortModule } from './stalinSort'
 
 export const algorithms: AlgorithmModule[] = [
   bubbleSortModule,
-
-  // stalinSortModule,
-  // miracleSortModule,
-  // mergeSortModule,
-  // quickSortModule,
-  // bogoSortModule,
+  stalinSortModule,
 ]
 
 export function getAlgorithm(id: string): AlgorithmModule | undefined {
