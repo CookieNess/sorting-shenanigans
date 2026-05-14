@@ -3,10 +3,10 @@ import { bubbleSortModule } from './bubbleSort'
 import { stalinSortModule } from './stalinSort'
 
 export const algorithms: AlgorithmModule[] = [
-  bubbleSortModule,
-  stalinSortModule,
+	bubbleSortModule,
+	stalinSortModule,
 ]
 
 export function getAlgorithm(id: string): AlgorithmModule | undefined {
-  return algorithms.find((a) => a.meta.id === id)
+	return algorithms.find((a) => a.meta.id === id)
 }
