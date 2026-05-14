@@ -1,6 +1,7 @@
 import type { AlgorithmModule } from '../types'
 import { bubbleSortModule } from './bubbleSort'
 import { insertionSortModule } from './insertionSort'
+import { mergeSortModule } from './mergeSort'
 import { selectionSortModule } from './selectionSort'
 import { stalinSortModule } from './stalinSort'
 
@@ -9,6 +10,7 @@ export const algorithms: AlgorithmModule[] = [
 	stalinSortModule,
 	selectionSortModule,
 	insertionSortModule,
+	mergeSortModule,
 ]
 
 export function getAlgorithm(id: string): AlgorithmModule | undefined {
