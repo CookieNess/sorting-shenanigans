@@ -24,7 +24,11 @@ export interface SortStep {
 	sorted: number[]
 }
 
-export type SortGenerator = (arr: number[]) => Generator<SortStep>
+export type SortIterator =
+	| Generator<SortStep>
+	| AsyncGenerator<SortStep>
+
+export type SortGenerator = (arr: number[]) => SortIterator
 
 export interface AlgorithmModule {
 	meta: AlgorithmMeta
