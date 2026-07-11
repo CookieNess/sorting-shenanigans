@@ -15,6 +15,7 @@ export interface SortStep {
 	comparing: number[]
 	swapping: number[]
 	sorted: number[]
+	panic?: number[]
 }
 
 export type SortIterator =

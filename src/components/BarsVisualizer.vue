@@ -18,6 +18,7 @@ const props = defineProps<{
 	comparing: number[]
 	swapping: number[]
 	sorted: number[]
+	panic?: number[]
 }>()
 
 const maxVal = computed(() => Math.max(...props.values, 1))
@@ -26,6 +27,7 @@ function barClass(idx: number): string {
 	if (props.swapping.includes(idx)) return 'bar--swap'
 	if (props.comparing.includes(idx)) return 'bar--compare'
 	if (props.sorted.includes(idx)) return 'bar--sorted'
+	if (props.panic?.includes(idx)) return 'bar--panic'
 	return ''
 }
 
@@ -57,4 +59,5 @@ function barStyle(val: number): Record<string, string> {
 .bar--compare { background: var(--blue); }
 .bar--swap    { background: var(--mauve); box-shadow: 0 0 8px var(--accent-glow); }
 .bar--sorted  { background: var(--green); }
+.bar--panic { background: var(--red); box-shadow: 0 0 8px rgba(243, 139, 168, 0.5); }
 </style>

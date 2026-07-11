@@ -51,6 +51,7 @@
 								:comparing="([...(step?.comparing ?? [])] as number[])"
 								:swapping="([...(step?.swapping ?? [])] as number[])"
 								:sorted="([...(step?.sorted ?? [])] as number[])"
+								:panic="([...(step?.panic ?? [])] as number[])"
 							/>
 						</div>
 						<div v-else class="viz-inner viz-inner--image">
