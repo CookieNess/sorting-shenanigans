@@ -1,12 +1,5 @@
 export type AlgorithmCategory = 'fast' | 'medium' | 'slow'
 export type AlgorithmTag = 'serious' | 'joke'
-
-export interface ComplexityInfo {
-	best: string
-	average: string
-	worst: string
-}
-
 export interface AlgorithmMeta {
 	id: string
 	name: string
@@ -40,3 +33,15 @@ export interface Tile {
 	currentIndex: number
 	dataUrl: string
 }
+
+interface ComplexityCase {
+	value: string
+	note?: string
+}
+
+interface ComplexityInfo {
+	best: ComplexityCase,
+	average: ComplexityCase,
+	worst: ComplexityCase,
+}
+

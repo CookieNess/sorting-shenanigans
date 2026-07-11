@@ -12,7 +12,7 @@
 
 		<div class="card-complexity">
 			<span class="complexity-label">avg</span>
-			<span class="complexity-value mono">{{ meta.complexity.average }}</span>
+			<span class="complexity-value mono">{{ meta.complexity.average.value }}</span>
 		</div>
 
 		<div class="card-arrow">→</div>

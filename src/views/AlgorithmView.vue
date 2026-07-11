@@ -104,8 +104,15 @@
 					<section class="info-section">
 						<h2 class="info-section-title">Complexity</h2>
 						<div class="complexity-grid">
-							<div class="complexity-row" v-for="(val, key) in complexityRows" :key="key">
-								<span class="complexity-key">{{ val.label }}</span>
+							<div
+								class="complexity-row"
+								v-for="(val, key) in complexityRows"
+								:key="key"
+							>
+								<div class="complexity-left">
+									<span class="complexity-key">{{ val.label }}</span>
+									<span v-if="val.note" class="complexity-note">{{ val.note }}</span>
+								</div>
 								<span class="complexity-val mono" :style="{ color: val.color }">{{ val.value }}</span>
 							</div>
 						</div>
@@ -181,9 +188,9 @@ const complexityRows = computed(() => {
 	if (!mod.value) return []
 	const c = mod.value.meta.complexity
 	return [
-		{ label: 'Best case',    value: c.best,    color: 'var(--green)' },
-		{ label: 'Average case', value: c.average, color: 'var(--yellow)' },
-		{ label: 'Worst case',   value: c.worst,   color: 'var(--red)' },
+		{ label: 'Best case',    value: c.best.value,    note: c.best.note,    color: 'var(--green)'  },
+		{ label: 'Average case', value: c.average.value, note: c.average.note, color: 'var(--yellow)' },
+		{ label: 'Worst case',   value: c.worst.value,   note: c.worst.note,   color: 'var(--red)'    },
 	]
 })
 
@@ -234,7 +241,7 @@ function toggleSort() {
 
 	sorter.play((s) => {
 		if (mode.value === 'bars') {
-			barValues.value       = s.array
+			barValues.value = s.array
 		} else {
 			applyOrder(s.array)
 			tileComparing.value = [...s.comparing]
@@ -477,11 +484,18 @@ onUnmounted(() => sorter.pause())
 .complexity-row {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 	padding: 10px 16px;
 	background: var(--mantle);
 	border-radius: var(--radius);
 	border: 1px solid var(--surface0);
+	gap: 16px;
+}
+
+.complexity-left {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 .complexity-key {
@@ -489,9 +503,16 @@ onUnmounted(() => sorter.pause())
 	color: var(--subtext0);
 }
 
+.complexity-note {
+	font-size: 0.8rem;
+	color: var(--overlay1);
+	line-height: 1.5;
+}
+
 .complexity-val {
 	font-size: 0.95rem;
 	font-weight: 600;
+	white-space: nowrap;
 }
 
 @media (max-width: 900px) {
