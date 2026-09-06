@@ -31,7 +31,6 @@ import { pigeonholeSortModule } from './pigeonholeSort'
 import { quickSortModule } from './quickSort'
 import { radixSortModule } from './radixSort'
 import { ragequitSortModule } from './ragequitSort'
-import { randomSortModule } from './randomSort'
 import { selectionSortModule } from './selectionSort'
 import { shellSortModule } from './shellSort'
 import { sixSevenSortModule } from './sixSevenSort'
@@ -82,7 +81,6 @@ export const algorithms: AlgorithmModule[] = [
 	quickSortModule,
 	radixSortModule,
 	ragequitSortModule,
-	randomSortModule,
 	selectionSortModule,
 	shellSortModule,
 	sixSevenSortModule,

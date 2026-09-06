@@ -30,18 +30,7 @@ export function useSorter() {
 		currentStep.value = null
 		iterator = null
 
-		const gen = sortFn([...arr])
-
-		if (isAsyncIterator(gen)) {
-			iterator = gen
-			return
-		}
-
-		const collected: SortStep[] = []
-		for (const step of gen) {
-			collected.push(step)
-		}
-		steps.value = collected
+		iterator = sortFn([...arr])
 	}
 
 	function play(onStep: (step: SortStep) => void, delayMs = 80) {
@@ -50,23 +39,11 @@ export function useSorter() {
 		isDone.value = false
 		const currentRunId = runId
 
-		const playCollectedSteps = () => {
-			if (stepIndex.value >= steps.value.length || currentRunId !== runId) {
-				isRunning.value = false
-				isDone.value = true
-				return
-			}
-			const step = steps.value[stepIndex.value]
-			currentStep.value = step
-			onStep(step)
-			stepIndex.value++
-			timeoutId = setTimeout(playCollectedSteps, delayMs)
-		}
-
-		const playAsyncSteps = async () => {
+		const playSteps = async () => {
 			if (!iterator || currentRunId !== runId) return
 
 			const result = await iterator.next()
+
 			if (currentRunId !== runId) return
 
 			if (result.done) {
@@ -81,17 +58,13 @@ export function useSorter() {
 			currentStep.value = step
 			onStep(step)
 			stepIndex.value++
+
 			timeoutId = setTimeout(() => {
-				void playAsyncSteps()
+				void playSteps()
 			}, delayMs)
 		}
 
-		if (iterator) {
-			void playAsyncSteps()
-			return
-		}
-
-		playCollectedSteps()
+		void playSteps()
 	}
 
 	function pause() {
