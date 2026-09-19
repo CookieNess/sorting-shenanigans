@@ -30,7 +30,7 @@ function* adhdSort(arr: number[]): Generator<SortStep> {
 		const randomNumber = Math.floor(Math.random() * 10)
 
 		if (randomNumber % 3 === 0 && sorted.length >= 2) {
-			// Gets distracted — performs 6 random swaps on already sorted elements
+			// distracted
 			const swapCount = Math.min(6, Math.floor(sorted.length / 2))
 			for (let s = 0; s < swapCount; s++) {
 				const idxA = Math.floor(Math.random() * sorted.length)
@@ -60,7 +60,7 @@ function* adhdSort(arr: number[]): Generator<SortStep> {
 				}
 			}
 		} else if (randomNumber === 1) {
-			// Hyperfocuses — insertion sorts a random subsection of the unsorted portion
+			// hyperfocus
 			const unsortedEnd = n - sorted.length
 			if (unsortedEnd >= 4) {
 				const start = Math.floor(Math.random() * (unsortedEnd - 2))

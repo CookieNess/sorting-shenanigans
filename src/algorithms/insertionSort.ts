@@ -1,35 +1,41 @@
-import type { AlgorithmModule, SortStep } from "../types";
+import type { AlgorithmModule, SortStep } from '../types'
 
 function* insertionSort(arr: number[]): Generator<SortStep> {
-	const inputArray = [...arr];
-	const n = inputArray.length;
-	const sorted: number[] = [];
+	const inputArray = [...arr]
+	const n = inputArray.length
 
 	for (let i = 1; i < n; i++) {
-		let key = inputArray[i];
-		let j = i - 1;
+		const key = inputArray[i]
+		let j = i - 1
+
+		yield {
+			array: [...inputArray],
+			comparing: [i],
+			swapping: [],
+			sorted: Array.from({ length: i }, (_, index) => index)
+		}
 
 		while (j >= 0 && inputArray[j] > key) {
 			yield {
 				array: [...inputArray],
 				comparing: [j, j + 1],
 				swapping: [],
-				sorted: [...sorted]
+				sorted: []
 			}
 
-			inputArray[j + 1] = inputArray[j];
-			j--;
-		}
-		inputArray[j + 1] = key;
+			inputArray[j + 1] = inputArray[j]
 
-		yield {
-			array: [...inputArray],
-			comparing: [],
-			swapping: [j + 1, i],
-			sorted: [...sorted]
+			yield {
+				array: [...inputArray],
+				comparing: [],
+				swapping: [j, j + 1],
+				sorted: []
+			}
+
+			j--
 		}
 
-		sorted.push(i);
+		inputArray[j + 1] = key
 	}
 
 	yield {
@@ -46,13 +52,15 @@ export const insertionSortModule: AlgorithmModule = {
 		name: 'Insertion Sort',
 		category: 'slow',
 		tag: 'serious',
-		description: 'Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.',
+		description:
+			'',
 		howItWorks:
-			'The algorithm works by iterating through the input array and growing a sorted output array. For each element in the input array, it compares it with the elements in the sorted output array and inserts it into the correct position. This process is repeated until all elements are sorted.',
+			'',
 		complexity: {
-			best: 'O(n)',
-			average: 'O(n²)',
-			worst: 'O(n²)',
+			best: '',
+			average: '',
+			worst: '',
+			note: ''
 		},
 	},
 	sort: insertionSort,

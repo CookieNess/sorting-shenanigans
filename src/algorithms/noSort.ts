@@ -3,7 +3,6 @@ import type { AlgorithmModule, SortStep } from '../types'
 function* noSort(arr: number[]): Generator<SortStep> {
 	const inputArray = [...arr]
 	const n = inputArray.length
-	const sorted: number[] = []
 
 	yield {
 		array: [...inputArray],

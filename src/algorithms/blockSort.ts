@@ -22,9 +22,18 @@ export const blockSortModule: AlgorithmModule = {
 		description: '',
 		howItWorks: '',
 		complexity: {
-			best: 'O(n log n)',
-			average: 'O(n log n)',
-			worst: 'O(n log n)',
+			best: {
+				value: '',
+				note: ''
+			},
+			average: {
+				value: '',
+				note: ''
+			},
+			worst: {
+				value: '',
+				note: ''
+			}
 		},
 	},
 	sort: blockSort,

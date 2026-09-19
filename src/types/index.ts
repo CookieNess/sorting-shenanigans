@@ -41,8 +41,9 @@ interface ComplexityCase {
 }
 
 interface ComplexityInfo {
-	best: ComplexityCase,
-	average: ComplexityCase,
-	worst: ComplexityCase,
+	best: ComplexityCase | string,
+	average: ComplexityCase | string,
+	worst: ComplexityCase | string,
+	note?: ComplexityCase | string
 }
 
