@@ -1,19 +1,11 @@
+import { isSorted } from '../helpers/isSorted'
 import type { AlgorithmModule, SortStep } from '../types'
 
 function* bogoSort(arr: number[]): Generator<SortStep> {
 	let inputArray = [...arr]
 	const n = inputArray.length
 	const maxAttempts = 1000000 // no infinite
-
-	function isSorted(array: number[]): boolean {
-		for (let i = 1; i < array.length; i++) {
-			if (array[i - 1] > array[i]) {
-				return false
-			}
-		}
-		return true
-	}
-
+	
 	function trySort(array: number[]): number[] {
 		const result = [...array]
 

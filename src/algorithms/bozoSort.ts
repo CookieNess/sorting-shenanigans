@@ -1,9 +1,31 @@
+import { isSorted } from '../helpers/isSorted'
 import type { AlgorithmModule, SortStep } from '../types'
 
 function* bozoSort(arr: number[]): Generator<SortStep> {
-	const inputArray = [...arr]
+	let inputArray = [...arr]
 	const n = inputArray.length
-	const sorted: number[] = []
+
+	function trySort(array: number[]): number[] {
+		const result = [...array]
+
+		const i = Math.floor(Math.random() * result.length)
+		const j = Math.floor(Math.random() * result.length)
+
+		;[result[i], result[j]] = [result[j], result[i]]
+
+		return result
+	}
+
+	while (!isSorted(inputArray)) {
+		inputArray = trySort(inputArray)
+
+		yield {
+			array: [...inputArray],
+			comparing: [],
+			swapping: [],
+			sorted: Array.from({ length: n }, (_, i) => i)
+		}
+	}
 
 	yield {
 		array: [...inputArray],
